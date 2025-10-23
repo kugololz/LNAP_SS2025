@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9fdc792c-29c6-4542-a149-4d0f43eaa260" name="Changes" comment="Version estable Alpha. Funciona como se espera, contiene boton para copiar codigo, este esta bien formateado. Trabajando en agregar mas funcionalidades como memoria, historial de chats, entre otros." />
+    <list default="true" id="9fdc792c-29c6-4542-a149-4d0f43eaa260" name="Changes" comment="Se cambio el script para que funcione con la VM creada en Azure donde se hostea el modelo con Ollama">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -81,7 +83,7 @@
       <updated>1758574920961</updated>
       <workItem from="1758578475601" duration="8886000" />
       <workItem from="1759779128060" duration="46000" />
-      <workItem from="1761247139562" duration="828000" />
+      <workItem from="1761247139562" duration="1762000" />
     </task>
     <task id="LOCAL-00001" summary="Version estable Alpha. Funciona como se espera, contiene boton para copiar codigo, este esta bien formateado. Trabajando en agregar mas funcionalidades como memoria, historial de chats, entre otros.">
       <option name="closed" value="true" />
@@ -99,7 +101,15 @@
       <option name="project" value="LOCAL" />
       <updated>1761247491561</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Se cambio el script para que funcione con la VM creada en Azure donde se hostea el modelo con Ollama">
+      <option name="closed" value="true" />
+      <created>1761248267906</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1761248267906</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -118,6 +128,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Version estable Alpha. Funciona como se espera, contiene boton para copiar codigo, este esta bien formateado. Trabajando en agregar mas funcionalidades como memoria, historial de chats, entre otros." />
-    <option name="LAST_COMMIT_MESSAGE" value="Version estable Alpha. Funciona como se espera, contiene boton para copiar codigo, este esta bien formateado. Trabajando en agregar mas funcionalidades como memoria, historial de chats, entre otros." />
+    <MESSAGE value="Se cambio el script para que funcione con la VM creada en Azure donde se hostea el modelo con Ollama" />
+    <option name="LAST_COMMIT_MESSAGE" value="Se cambio el script para que funcione con la VM creada en Azure donde se hostea el modelo con Ollama" />
   </component>
 </project>
