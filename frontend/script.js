@@ -1,7 +1,7 @@
 const generateBtn = document.getElementById("generateBtn");
 const userInput = document.getElementById("userInput");
 const chatContainer = document.querySelector(".chat-container");
-const BACKEND_URL = "http://127.0.0.1:5001/api/generate";
+const BACKEND_URL = "http://20.120.244.216:5001/api/generate";
 
 /**
  * @param {string} role
