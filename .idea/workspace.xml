@@ -4,11 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9fdc792c-29c6-4542-a149-4d0f43eaa260" name="Changes" comment="Agregamos un &quot;Clippy&quot; que hara como asistente dando consejos, detalles esteticos solamente">
-      <change beforePath="$PROJECT_DIR$/.idea/material_theme_project_new.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/material_theme_project_new.xml" afterDir="false" />
+    <list default="true" id="9fdc792c-29c6-4542-a149-4d0f43eaa260" name="Changes" comment="Agregamos la funcionalidad para elegir entre la generacion de codigo C++ o Python.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/script.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/docs/style.css" afterDir="false" />
     </list>
@@ -103,7 +100,7 @@
       <workItem from="1761250349623" duration="409000" />
       <workItem from="1761251193227" duration="77000" />
       <workItem from="1761270984731" duration="320000" />
-      <workItem from="1761335895436" duration="660000" />
+      <workItem from="1761335895436" duration="1704000" />
     </task>
     <task id="LOCAL-00001" summary="Version estable Alpha. Funciona como se espera, contiene boton para copiar codigo, este esta bien formateado. Trabajando en agregar mas funcionalidades como memoria, historial de chats, entre otros.">
       <option name="closed" value="true" />
@@ -161,7 +158,15 @@
       <option name="project" value="LOCAL" />
       <updated>1761329324404</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Agregamos la funcionalidad para elegir entre la generacion de codigo C++ o Python.">
+      <option name="closed" value="true" />
+      <created>1761336670085</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1761336670085</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -209,6 +214,7 @@
     <MESSAGE value="Version estable Alpha. Funciona como se espera, contiene boton para copiar codigo, este esta bien formateado. Trabajando en agregar mas funcionalidades como memoria, historial de chats, entre otros." />
     <MESSAGE value="Se cambio el script para que funcione con la VM creada en Azure donde se hostea el modelo con Ollama" />
     <MESSAGE value="Agregamos un &quot;Clippy&quot; que hara como asistente dando consejos, detalles esteticos solamente" />
-    <option name="LAST_COMMIT_MESSAGE" value="Agregamos un &quot;Clippy&quot; que hara como asistente dando consejos, detalles esteticos solamente" />
+    <MESSAGE value="Agregamos la funcionalidad para elegir entre la generacion de codigo C++ o Python." />
+    <option name="LAST_COMMIT_MESSAGE" value="Agregamos la funcionalidad para elegir entre la generacion de codigo C++ o Python." />
   </component>
 </project>

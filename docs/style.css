@@ -269,3 +269,42 @@ button {
     color: #202124;
     border-color: var(--accent-color);
 }
+
+/* --- Estilos Responsivos (Móvil) --- */
+
+@media (max-width: 480px) {
+    .main-content {
+        padding: 10px;
+        padding-bottom: 140px;
+    }
+
+    .chat-container {
+        max-width: 100%;
+    }
+
+    .chat-input-area {
+        padding: 10px;
+    }
+
+    .input-wrapper {
+        max-width: 100%;
+    }
+
+    .chat-message {
+        max-width: 90%;
+    }
+
+    #clippy-container {
+        bottom: 15px;
+        right: 15px;
+    }
+
+    #clippy-icon {
+        font-size: 2rem;
+    }
+
+    #clippy-bubble {
+        width: 250px;
+        bottom: 60px;
+    }
+}

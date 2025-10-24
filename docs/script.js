@@ -44,6 +44,28 @@ cppBtn.addEventListener('click', () => {
     pyBtn.classList.remove('active');
 });
 
+/**
+ * @param {HTMLElement} element
+ * @param {string} text
+ */
+function animateText(element, text) {
+    return new Promise((resolve) => {
+        let i = 0;
+        element.innerText = "";
+
+        const interval = setInterval(() => {
+            if (i < text.length) {
+                element.innerText += text[i];
+                i++;
+                chatContainer.parentElement.scrollTop = chatContainer.parentElement.scrollHeight;
+            } else {
+                clearInterval(interval);
+                resolve();
+            }
+        }, 10);
+    });
+}
+
 async function generateCode() {
     const prompt = userInput.value.trim();
     if (!prompt) return;
@@ -58,7 +80,8 @@ async function generateCode() {
     const aiMessageContent = createMessageSection('ai', true);
     const pre = document.createElement('pre');
     const code = document.createElement('code');
-    code.className = `language-${currentLanguage === 'cpp' ? 'cpp' : 'python'}`;    code.innerText = "▍";
+    code.className = `language-${currentLanguage === 'cpp' ? 'cpp' : 'python'}`;
+    code.innerText = "▍";
     pre.appendChild(code);
     aiMessageContent.appendChild(pre);
 
@@ -67,17 +90,55 @@ async function generateCode() {
     copyButton.innerText = 'Copiar';
     aiMessageContent.appendChild(copyButton);
 
-    copyButton.addEventListener('click', () => {
-        navigator.clipboard.writeText(code.innerText).then(() => {
-            copyButton.innerText = '¡Copiado!';
-            setTimeout(() => {
-                copyButton.innerText = 'Copiar';
-            }, 2000);
-        }).catch(err => {
-            console.error('Error al copiar el texto: ', err);
-            copyButton.innerText = 'Error';
+    chatContainer.parentElement.scrollTop = chatContainer.parentElement.scrollHeight;
+
+    try {
+        const response = await fetch(BACKEND_URL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ prompt, model: "codellama", language: currentLanguage }),
         });
-    });
+
+        if (!response.ok) throw new Error(`Error del servidor: ${response.status}`);
+
+        const reader = response.body.getReader();
+        const decoder = new TextDecoder();
+
+        let fullRawCode = "";
+
+        while (true) {
+            const { done, value } = await reader.read();
+            if (done) break;
+            fullRawCode += decoder.decode(value);
+        }
+
+        const cleanCode = fullRawCode.replace(/```python\n|```/g, "").trim();
+
+
+
+        await animateText(code, cleanCode);
+
+        const highlightedCodeHTML = hljs.highlight(cleanCode, { language: currentLanguage }).value;
+        code.innerHTML = highlightedCodeHTML;
+
+        copyButton.addEventListener('click', () => {
+            navigator.clipboard.writeText(cleanCode).then(() => { // Usa cleanCode
+                copyButton.innerText = '¡Copiado!';
+                setTimeout(() => {
+                    copyButton.innerText = 'Copiar';
+                }, 2000);
+            }).catch(err => {
+                console.error('Error al copiar el texto: ', err);
+                copyButton.innerText = 'Error';
+            });
+        });
+
+    } catch (error) {
+        code.innerText = `Ocurrió un error: ${error.message}`;
+        copyButton.innerText = 'Error';
+        copyButton.disabled = true;
+    }
+}
 
 
     chatContainer.parentElement.scrollTop = chatContainer.parentElement.scrollHeight;
