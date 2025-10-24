@@ -170,7 +170,7 @@ async function generateCode() {
     } catch (error) {
         code.innerText = `Ocurrió un error: ${error.message}`;
     }
-}
+
 
 generateBtn.addEventListener("click", generateCode);
 userInput.addEventListener("keydown", (event) => {
