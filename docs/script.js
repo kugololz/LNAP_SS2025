@@ -90,7 +90,7 @@ async function generateCode() {
 
         if (!response.ok) throw new Error(`Error del servidor: ${response.status}`);
 
-        const reader = response.body.GetReader();
+        const reader = response.body.getReader();
         const decoder = new TextDecoder();
         let fullRawCode = "";
 
