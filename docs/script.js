@@ -101,10 +101,33 @@ async function generateCode() {
         }
 
         const cleanCode = fullRawCode.replace(/```python\n|```/g, "").trim();
-
         await animateText(code, cleanCode);
 
-        const highlightedCodeHTML = hljs.highlight(cleanCode, { language: currentLanguage }).value;
+        if (cleanCode.startsWith('ERROR:')) {
+            // Es un error de verificación del backend
+            code.style.color = '#ff9b9b'; // Hacemos el texto de error rojo
+            copyButton.innerText = 'Error';
+            copyButton.disabled = true;
+        } else {
+            // Es código válido, resaltarlo
+            const highlightedCodeHTML = hljs.highlight(cleanCode, { language: currentLanguage }).value;
+            code.innerHTML = highlightedCodeHTML;
+
+            // Activa el botón de copiar
+            copyButton.disabled = false;
+            copyButton.addEventListener('click', () => {
+                navigator.clipboard.writeText(cleanCode).then(() => {
+                    copyButton.innerText = '¡Copiado!';
+                    setTimeout(() => {
+                        copyButton.innerText = 'Copiar';
+                    }, 2000);
+                }).catch(err => {
+                    console.error('Error al copiar el texto: ', err);
+                    copyButton.innerText = 'Error';
+                });
+            });
+        }
+
         code.innerHTML = highlightedCodeHTML;
 
         copyButton.disabled = false;
