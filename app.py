@@ -4,7 +4,6 @@ from flask import Response
 import ollama
 import re
 
-
 app = Flask(__name__)
 CORS(app)
 

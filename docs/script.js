@@ -1,11 +1,17 @@
 const generateBtn = document.getElementById("generateBtn");
 const userInput = document.getElementById("userInput");
 const chatContainer = document.querySelector(".chat-container");
-const BACKEND_URL = "https://api.lnap.dev/api/generate";/**
+const BACKEND_URL = "https://api.lnap.dev/api/generate";
+let currentLanguage = 'python';
+const pyBtn = document.getElementById('lang-py');
+const cppBtn = document.getElementById('lang-cpp');
+/**
  * @param {string} role
  * @param {boolean} isCodeBlock
  * @returns {HTMLElement}
  */
+
+
 
 function createMessageSection(role, isCodeBlock = false) {
     const messageDiv = document.createElement("div");
@@ -26,6 +32,18 @@ function createMessageSection(role, isCodeBlock = false) {
     return contentDiv;
 }
 
+pyBtn.addEventListener('click', () => {
+    currentLanguage = 'python';
+    pyBtn.classList.add('active');
+    cppBtn.classList.remove('active');
+});
+
+cppBtn.addEventListener('click', () => {
+    currentLanguage = 'cpp';
+    cppBtn.classList.add('active');
+    pyBtn.classList.remove('active');
+});
+
 async function generateCode() {
     const prompt = userInput.value.trim();
     if (!prompt) return;
@@ -40,8 +58,7 @@ async function generateCode() {
     const aiMessageContent = createMessageSection('ai', true);
     const pre = document.createElement('pre');
     const code = document.createElement('code');
-    code.className = 'language-python';
-    code.innerText = "▍";
+    code.className = `language-${currentLanguage === 'cpp' ? 'cpp' : 'python'}`;    code.innerText = "▍";
     pre.appendChild(code);
     aiMessageContent.appendChild(pre);
 
@@ -69,8 +86,7 @@ async function generateCode() {
         const response = await fetch(BACKEND_URL, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ prompt, model: "codellama" }),
-        });
+            body: JSON.stringify({ prompt, model: "codellama", language: currentLanguage }),        });
 
         if (!response.ok) throw new Error(`Error del servidor: ${response.status}`);
 
@@ -87,7 +103,7 @@ async function generateCode() {
 
         const rawCode = code.innerText;
         const cleanCode = rawCode.replace(/```python\n|```/g, "").trim();
-        const highlightedCodeHTML = hljs.highlight(cleanCode, { language: 'python' }).value;
+        const highlightedCodeHTML = hljs.highlight(cleanCode, { language: currentLanguage }).value;
         code.innerHTML = highlightedCodeHTML;
 
     } catch (error) {

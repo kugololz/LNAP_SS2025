@@ -236,3 +236,36 @@ button {
 #clippy-close-btn:hover {
     opacity: 1;
 }
+
+/* --- Estilos del Switch de Lenguaje --- */
+
+.lang-switch-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.lang-btn {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    width: auto;
+    height: auto;
+
+    background-color: var(--content-background);
+    color: var(--text-color);
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.lang-btn:hover {
+    background-color: #3c4043;
+}
+
+.lang-btn.active {
+    background-color: var(--accent-color);
+    color: #202124;
+    border-color: var(--accent-color);
+}
