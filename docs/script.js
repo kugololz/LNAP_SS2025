@@ -1,3 +1,4 @@
+// --- 1. Variables Globales ---
 const generateBtn = document.getElementById("generateBtn");
 const userInput = document.getElementById("userInput");
 const chatContainer = document.querySelector(".chat-container");
@@ -5,18 +6,16 @@ const BACKEND_URL = "https://api.lnap.dev/api/generate";
 let currentLanguage = 'python';
 const pyBtn = document.getElementById('lang-py');
 const cppBtn = document.getElementById('lang-cpp');
+
+// --- 2. Función Auxiliar: createMessageSection ---
 /**
  * @param {string} role
  * @param {boolean} isCodeBlock
  * @returns {HTMLElement}
  */
-
-
-
 function createMessageSection(role, isCodeBlock = false) {
     const messageDiv = document.createElement("div");
     messageDiv.className = `chat-message ${role}`;
-
 
     const contentDiv = document.createElement("div");
     contentDiv.className = "message-content";
@@ -28,22 +27,10 @@ function createMessageSection(role, isCodeBlock = false) {
     chatContainer.appendChild(messageDiv);
 
     chatContainer.parentElement.scrollTop = chatContainer.parentElement.scrollHeight;
-
     return contentDiv;
 }
 
-pyBtn.addEventListener('click', () => {
-    currentLanguage = 'python';
-    pyBtn.classList.add('active');
-    cppBtn.classList.remove('active');
-});
-
-cppBtn.addEventListener('click', () => {
-    currentLanguage = 'cpp';
-    cppBtn.classList.add('active');
-    pyBtn.classList.remove('active');
-});
-
+// --- 3. Función Auxiliar: animateText ---
 /**
  * @param {HTMLElement} element
  * @param {string} text
@@ -66,6 +53,7 @@ function animateText(element, text) {
     });
 }
 
+// --- 4. Función Principal: generateCode ---
 async function generateCode() {
     const prompt = userInput.value.trim();
     if (!prompt) return;
@@ -81,13 +69,14 @@ async function generateCode() {
     const pre = document.createElement('pre');
     const code = document.createElement('code');
     code.className = `language-${currentLanguage === 'cpp' ? 'cpp' : 'python'}`;
-    code.innerText = "▍";
+    code.innerText = "▍"; // Cursor de espera
     pre.appendChild(code);
     aiMessageContent.appendChild(pre);
 
     const copyButton = document.createElement('button');
     copyButton.className = 'copy-button';
     copyButton.innerText = 'Copiar';
+    copyButton.disabled = true; // Desactivado hasta que termine
     aiMessageContent.appendChild(copyButton);
 
     chatContainer.parentElement.scrollTop = chatContainer.parentElement.scrollHeight;
@@ -101,9 +90,8 @@ async function generateCode() {
 
         if (!response.ok) throw new Error(`Error del servidor: ${response.status}`);
 
-        const reader = response.body.getReader();
+        const reader = response.body.GetReader();
         const decoder = new TextDecoder();
-
         let fullRawCode = "";
 
         while (true) {
@@ -114,15 +102,14 @@ async function generateCode() {
 
         const cleanCode = fullRawCode.replace(/```python\n|```/g, "").trim();
 
-
-
         await animateText(code, cleanCode);
 
         const highlightedCodeHTML = hljs.highlight(cleanCode, { language: currentLanguage }).value;
         code.innerHTML = highlightedCodeHTML;
 
+        copyButton.disabled = false;
         copyButton.addEventListener('click', () => {
-            navigator.clipboard.writeText(cleanCode).then(() => { // Usa cleanCode
+            navigator.clipboard.writeText(cleanCode).then(() => {
                 copyButton.innerText = '¡Copiado!';
                 setTimeout(() => {
                     copyButton.innerText = 'Copiar';
@@ -136,56 +123,38 @@ async function generateCode() {
     } catch (error) {
         code.innerText = `Ocurrió un error: ${error.message}`;
         copyButton.innerText = 'Error';
-        copyButton.disabled = true;
     }
 }
 
+// --- 5. Event Listeners (Botones de Lenguaje) ---
+pyBtn.addEventListener('click', () => {
+    currentLanguage = 'python';
+    pyBtn.classList.add('active');
+    cppBtn.classList.remove('active');
+});
 
-    chatContainer.parentElement.scrollTop = chatContainer.parentElement.scrollHeight;
+cppBtn.addEventListener('click', () => {
+    currentLanguage = 'cpp';
+    cppBtn.classList.add('active');
+    pyBtn.classList.remove('active');
+});
 
-    try {
-        const response = await fetch(BACKEND_URL, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ prompt, model: "codellama", language: currentLanguage }),        });
-
-        if (!response.ok) throw new Error(`Error del servidor: ${response.status}`);
-
-        const reader = response.body.getReader();
-        const decoder = new TextDecoder();
-        code.innerText = "";
-
-        while (true) {
-            const { done, value } = await reader.read();
-            if (done) break;
-            code.innerText += decoder.decode(value);
-            chatContainer.parentElement.scrollTop = chatContainer.parentElement.scrollHeight;
-        }
-
-        const rawCode = code.innerText;
-        const cleanCode = rawCode.replace(/```python\n|```/g, "").trim();
-        const highlightedCodeHTML = hljs.highlight(cleanCode, { language: currentLanguage }).value;
-        code.innerHTML = highlightedCodeHTML;
-
-    } catch (error) {
-        code.innerText = `Ocurrió un error: ${error.message}`;
-    }
-
-
+// --- 6. Event Listeners (Input y Envío) ---
 generateBtn.addEventListener("click", generateCode);
+
 userInput.addEventListener("keydown", (event) => {
     if (event.key === "Enter" && !event.shiftKey) {
         event.preventDefault();
         generateCode();
     }
 });
+
 userInput.addEventListener('input', () => {
     userInput.style.height = 'auto';
     userInput.style.height = `${userInput.scrollHeight}px`;
 });
 
-/* --- Lógica de Clippy --- */
-
+// --- 7. Lógica de Clippy ---
 const programmingTips = [
     "Python: Usa 'list comprehensions' para crear listas de forma concisa. Ej: `cuadrados = [x*x for x in range(10)]`",
     "Fundamentos: El principio 'DRY' (Don't Repeat Yourself) te ayuda a escribir código más limpio evitando la duplicación.",
@@ -212,3 +181,5 @@ clippyIcon.addEventListener('click', () => {
 clippyCloseBtn.addEventListener('click', () => {
     clippyBubble.classList.remove('show');
 });
+
+// ¡NO HAY NINGUNA LLAVE '}' EXTRA AQUÍ!
