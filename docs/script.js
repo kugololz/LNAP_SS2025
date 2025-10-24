@@ -106,3 +106,32 @@ userInput.addEventListener('input', () => {
     userInput.style.height = 'auto';
     userInput.style.height = `${userInput.scrollHeight}px`;
 });
+
+/* --- Lógica de Clippy --- */
+
+const programmingTips = [
+    "Python: Usa 'list comprehensions' para crear listas de forma concisa. Ej: `cuadrados = [x*x for x in range(10)]`",
+    "Fundamentos: El principio 'DRY' (Don't Repeat Yourself) te ayuda a escribir código más limpio evitando la duplicación.",
+    "Python: ¿Necesitas un diccionario con un valor por defecto? Usa `collections.defaultdict`.",
+    "Fundamentos: 'KISS' (Keep It Simple, Stupid) es un principio de diseño que prefiere la simplicidad.",
+    "Python: Para unir una lista de strings, es más eficiente usar `'-'.join(mi_lista)` que un bucle `for`.",
+    "Fundamentos: Comenta tu código para explicar el 'por qué', no el 'qué'. El código debe explicar qué hace por sí mismo.",
+    "Python: Usa 'f-strings' (ej: `f'Hola, {nombre}'`) para formatear strings. Es más rápido y legible que `.format()`."
+];
+
+const clippyIcon = document.getElementById('clippy-icon');
+const clippyBubble = document.getElementById('clippy-bubble');
+const clippyTipText = document.getElementById('clippy-tip-text');
+const clippyCloseBtn = document.getElementById('clippy-close-btn');
+
+clippyIcon.addEventListener('click', () => {
+    const randomIndex = Math.floor(Math.random() * programmingTips.length);
+    const randomTip = programmingTips[randomIndex];
+
+    clippyTipText.innerText = randomTip;
+    clippyBubble.classList.add('show');
+});
+
+clippyCloseBtn.addEventListener('click', () => {
+    clippyBubble.classList.remove('show');
+});

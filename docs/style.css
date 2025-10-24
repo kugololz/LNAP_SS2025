@@ -167,3 +167,71 @@ button {
 .copy-button:hover {
     background-color: #444;
 }
+
+/* --- Estilos de Clippy --- */
+
+#clippy-container {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 100;
+}
+
+#clippy-icon {
+    font-size: 2.5rem;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+#clippy-icon:hover {
+    transform: scale(1.15);
+}
+
+#clippy-bubble {
+    position: absolute;
+    bottom: 75px;
+    right: 0;
+    width: 280px;
+    background-color: var(--content-background);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    color: var(--text-color);
+    line-height: 1.6;
+
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: none;
+
+#clippy-bubble.show {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+#clippy-tip-text {
+    margin: 0;
+    margin-top: 10px;
+    font-size: 0.9rem;
+}
+
+#clippy-close-btn {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    background: none;
+    border: none;
+    color: var(--text-color);
+    font-size: 1.2rem;
+    cursor: pointer;
+    opacity: 0.7;
+    width: auto;
+    height: auto;
+    border-radius: 0;
+}
+
+#clippy-close-btn:hover {
+    opacity: 1;
+}
