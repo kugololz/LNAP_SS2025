@@ -3,7 +3,8 @@ const generateBtn = document.getElementById("generateBtn");
 const userInput = document.getElementById("userInput");
 const chatContainer = document.querySelector(".chat-container");
 const BACKEND_URL = "https://api.lnap.dev/api/generate";
-let currentLanguage = 'python';
+
+let currentLanguage = 'python'; // Estado inicial
 const pyBtn = document.getElementById('lang-py');
 const cppBtn = document.getElementById('lang-cpp');
 
@@ -32,24 +33,25 @@ function createMessageSection(role, isCodeBlock = false) {
 
 // --- 3. Función Auxiliar: animateText ---
 /**
- * @param {HTMLElement} element
- * @param {string} text
+ * @param {HTMLElement} element - El elemento <code> donde escribir.
+ * @param {string} text - El texto completo a animar.
  */
 function animateText(element, text) {
     return new Promise((resolve) => {
         let i = 0;
-        element.innerText = "";
+        element.innerText = ""; // Limpia el cursor '▍'
 
         const interval = setInterval(() => {
             if (i < text.length) {
                 element.innerText += text[i];
                 i++;
+                // Mueve el scroll con cada letra
                 chatContainer.parentElement.scrollTop = chatContainer.parentElement.scrollHeight;
             } else {
                 clearInterval(interval);
-                resolve();
+                resolve(); // Termina la promesa
             }
-        }, 10);
+        }, 10); // 10ms por letra (ajusta la velocidad aquí)
     });
 }
 
@@ -90,7 +92,7 @@ async function generateCode() {
 
         if (!response.ok) throw new Error(`Error del servidor: ${response.status}`);
 
-        const reader = response.body.getReader();
+        const reader = response.body.getReader(); // Corregido: 'getReader'
         const decoder = new TextDecoder();
         let fullRawCode = "";
 
@@ -101,19 +103,17 @@ async function generateCode() {
         }
 
         const cleanCode = fullRawCode.replace(/```python\n|```/g, "").trim();
+
         await animateText(code, cleanCode);
 
         if (cleanCode.startsWith('ERROR:')) {
-            // Es un error de verificación del backend
-            code.style.color = '#ff9b9b'; // Hacemos el texto de error rojo
+            code.style.color = '#ff9b9b';
             copyButton.innerText = 'Error';
             copyButton.disabled = true;
         } else {
-            // Es código válido, resaltarlo
             const highlightedCodeHTML = hljs.highlight(cleanCode, { language: currentLanguage }).value;
             code.innerHTML = highlightedCodeHTML;
 
-            // Activa el botón de copiar
             copyButton.disabled = false;
             copyButton.addEventListener('click', () => {
                 navigator.clipboard.writeText(cleanCode).then(() => {
@@ -127,21 +127,6 @@ async function generateCode() {
                 });
             });
         }
-
-        code.innerHTML = highlightedCodeHTML;
-
-        copyButton.disabled = false;
-        copyButton.addEventListener('click', () => {
-            navigator.clipboard.writeText(cleanCode).then(() => {
-                copyButton.innerText = '¡Copiado!';
-                setTimeout(() => {
-                    copyButton.innerText = 'Copiar';
-                }, 2000);
-            }).catch(err => {
-                console.error('Error al copiar el texto: ', err);
-                copyButton.innerText = 'Error';
-            });
-        });
 
     } catch (error) {
         code.innerText = `Ocurrió un error: ${error.message}`;
@@ -204,5 +189,3 @@ clippyIcon.addEventListener('click', () => {
 clippyCloseBtn.addEventListener('click', () => {
     clippyBubble.classList.remove('show');
 });
-
-// ¡NO HAY NINGUNA LLAVE '}' EXTRA AQUÍ!
