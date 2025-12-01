@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="10d58cc8-d21b-4dba-9304-f01ded1e8e82" name="AzureServerSFTP">
+        <fileTransfer accessType="SFTP" host="20.120.244.216" port="22" sshConfigId="431b68c7-1bb7-4377-9555-9e2feada7a92" sshConfig="ergoazure@20.120.244.216:22 key" keyPair="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" isUseSudo="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

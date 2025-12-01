@@ -102,7 +102,10 @@ async function generateCode() {
             fullRawCode += decoder.decode(value);
         }
 
-        const cleanCode = fullRawCode.replace(/```python\n|```/g, "").trim();
+        const cleanCode = fullRawCode
+            .replace(/```[a-zA-Z0-9]*\n?/g, "") // quita ```python, ```cpp, ```js, etc.
+            .replace(/```/g, "")                // por si queda algún ``` suelto
+            .trim();
 
         await animateText(code, cleanCode);
 
@@ -165,7 +168,7 @@ userInput.addEventListener('input', () => {
 // --- 7. Lógica de Clippy ---
 const programmingTips = [
     "Python: Usa 'list comprehensions' para crear listas de forma concisa. Ej: `cuadrados = [x*x for x in range(10)]`",
-    "Fundamentos: El principio 'DRY' (Don't Repeat Yourself) te ayuda a escribir código más limpio evitando la duplicación.",
+    "Fundamentos: El princi pio 'DRY' (Don't Repeat Yourself) te ayuda a escribir código más limpio evitando la duplicación.",
     "Python: ¿Necesitas un diccionario con un valor por defecto? Usa `collections.defaultdict`.",
     "Fundamentos: 'KISS' (Keep It Simple, Stupid) es un principio de diseño que prefiere la simplicidad.",
     "Python: Para unir una lista de strings, es más eficiente usar `'-'.join(mi_lista)` que un bucle `for`.",
