@@ -35,7 +35,11 @@ body {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    overflow-y: auto;     /* <-- Agregado */
+    max-height: calc(100vh - 180px); /* <-- Para que sea scrollable sin pisar el input */
+    padding-bottom: 20px; /* <-- Previene que el último mensaje quede escondido */
 }
+
 
 .chat-message {
     display: flex;

@@ -5,11 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9fdc792c-29c6-4542-a149-4d0f43eaa260" name="Changes" comment="Agregamos mas estetica a la hora de generar codigo para que este se vea mas fluido.">
-      <change afterPath="$PROJECT_DIR$/.idea/deployment.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/webServers.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/script.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -118,7 +114,8 @@
       <workItem from="1761669760851" duration="6182000" />
       <workItem from="1764272208326" duration="58000" />
       <workItem from="1764272273941" duration="1706000" />
-      <workItem from="1764607275166" duration="2179000" />
+      <workItem from="1764607275166" duration="2622000" />
+      <workItem from="1764614288206" duration="1376000" />
     </task>
     <task id="LOCAL-00001" summary="Version estable Alpha. Funciona como se espera, contiene boton para copiar codigo, este esta bien formateado. Trabajando en agregar mas funcionalidades como memoria, historial de chats, entre otros.">
       <option name="closed" value="true" />
@@ -232,7 +229,15 @@
       <option name="project" value="LOCAL" />
       <updated>1761589911364</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Agregamos mas estetica a la hora de generar codigo para que este se vea mas fluido.">
+      <option name="closed" value="true" />
+      <created>1764611445201</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1764611445201</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
