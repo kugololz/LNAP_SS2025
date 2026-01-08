@@ -1,12 +1,12 @@
-# 💬 LNAP (Lenguaje Natural a Python)
+# 💬 LNAP (Lenguaje Natural a Python y C++)
 
 ## Live Demo: https://lnap.dev
 
-Este proyecto es una aplicación web Full Stack que convierte instrucciones de lenguaje natural (en español) en código Python. Utiliza un modelo de IA (codellama) alojado en un servidor privado y transmite la respuesta en tiempo real a una interfaz de chat.
+Este proyecto es una aplicación web Full Stack que convierte instrucciones de lenguaje natural (en español) en código Python o C++. Utiliza un modelo de IA (codellama) alojado en un servidor privado y transmite la respuesta en tiempo real a una interfaz de chat.
 
 ## ¿Qué hace esta app?
 
-Simplemente escribe una instrucción en el chat, como "crea una función que sume dos números" o "haz una clase 'Perro' con un método para ladrar". La IA generará el código Python correspondiente y te lo mostrará.
+Simplemente escribe una instrucción en el chat, como "crea una función que sume dos números" o "haz una clase 'Perro' con un método para ladrar". La IA generará el código Python o C++ correspondiente y te lo mostrará.
 
 ### Características (temporales, se agregaran o eliminaran conforme progrese el proyecto)
 
